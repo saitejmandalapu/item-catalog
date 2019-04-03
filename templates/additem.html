@@ -1,0 +1,59 @@
+{% extends "base.html"%}
+{% include "nav.html" %}
+{% block content %}
+
+<section id="addItem" class="section">
+    <div class="section-content container padding-1-5">
+        <h1>Add Item</h1>
+
+<form action="{{url_for('addItem', category_id=category_id )}}" method = 'POST' class="padding-top-10">
+	<div class="form-group">
+            <label for="brandname">Brand Name:</label>
+            <input type ="text" class="form-control" id="brandname" maxlength="250" name="brandname">
+        </div>
+
+        <div class="form-group">
+            <label for="model">Model:</label>
+            <input type ="text" class="form-control" id="model" maxlength="100" name="model">
+        </div>
+
+        <div class="form-group">
+                <label for="image">Image URL:</label>
+                <input type ="url" class="form-control" id="image" maxlength="250" name="image" placeholder="http://www.example.com">
+            </div>
+
+        <div class="form-group">
+                <label for="color">Color:</label>
+                <input type="text" class="form-control" id="color" maxlength="50" name="color">
+            </div>
+
+            <div class="form-group">
+                <label for="price">Price:</label>
+                <input type="number" class="form-control" id="price" maxlength="50" min="0" max="70000" name="price">
+            </div>
+
+        <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea name="description" id="description" class="form-control" maxlength="250" cols="30" rows="3"></textarea>
+            </div>
+
+            
+            <div class="form-group" style="width: 300px;">
+                <label for="image">Category:</label>
+                <select name="category" class="form-control">
+                	{% for a in categories %}
+                    <option value="{{a.name}}">{{a.name}}</option>
+                {% endfor %}
+                </select>
+                </div>
+            <div class="form-group">
+                <button type="submit" id="submit" class="btn btn-primary">Save</button>
+                <a href="{{url_for('showcategory')}}">
+                    <button type="button" class="btn btn-danger">Cancel</button>
+                </a>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}
+

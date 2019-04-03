@@ -1,0 +1,20 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+        <div class="navbar-header">
+        <a class="navbar-brand" href="{{url_for('showcategory')}}">SHOE LAND</a>
+        </div>
+
+            	{% if 'name' not in session %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a  href="{{url_for('login')}}"><span class="glyphicon glyphicon-log-in" title="login here"></span> Login</a></li>
+                </ul>
+                {% else %}
+                  <ul class="nav navbar-nav navbar-right">
+                    <li><a  href="{{url_for('addCategory')}}">Add Category</a></li>
+                    <li><a  href="{{url_for('addItem')}}">Add Item</a></li>
+                    <li><a  href="{{url_for('gdisconnect')}}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                 </ul>
+                {% endif %}
+            </div>
+        </nav>
+

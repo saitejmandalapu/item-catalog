@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% block title %}Category{% endblock title %}
+{% include "nav.html" %}
+{% block content %}
+{% include "flash.html" %}
+
+<!-- Page Content -->
+<div class="container-fluid" >
+  <section id="showcategories" class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <p class="h2"> Categories 
+          </p>
+          <ul class="list-group">
+
+            {% for i in categories %}
+              <li class="list-group-item">
+              <p class="h3">
+              <a href="{{url_for('showcategories', category_id = i.id,) }}" >{{ i.name }}</a>
+        
+              {% if 'name' in session %}
+              <a href = "{{url_for('deleteCategory', category_id = i.id)}}">
+                <i class="fa fa-trash" style="font-size:30px;color:red">
+                <span class="glyphicon glyphicon-trash pull-right" data-toggle="tooltip" title="Delete Category"></span></i></a>
+
+              <a href = "{{url_for('editCategory', category_id = i.id)}}">
+                <i class="fa fa-edit" style="font-size:30px;color:green">
+                <span class="glyphicon glyphicon-pencil pull-right"data-toggle="tooltip" title="Edit Category"></span></i></a>
+                {% endif %}
+               </p>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <!--Items--->
+        <div class="col-md-8">
+          <p class="h2">ITEMS
+          </p>
+          <div class="row">
+          {% for i in items %}
+            {% if i.brandname|length <= 0 %}
+             <!-- <center><h5>No Data Found</h5></center>-->
+            {% else %}                  
+                <div class="col-sm-6">
+                 <div class="panel panel-primary">
+                  <div class="panel-heading">
+                    <a href="{{url_for('item_details',item_id=i.id)}}"><h3 class="text-white">{{ i.brandname }}</h3></a>
+                    </div>
+                   <div class="panel-body">
+                   <img class="img-fluid img-responsive" src="{{ i.image }}" alt="Card image"  style="height: 200px;width: 100%;">                    
+                  <button type="button" class="btn btn-info" data-toggle="collapse"  title="Click More Details" data-target="#demo{{ i.id }}">Details</button>
+                  {% if 'name' in session %}
+                    <a href = "{{url_for('deleteItem', category_id = i.category.id, item_id = i.id)}}">
+                     <i class="fa fa-trash" style="font-size:25px;color:red">
+                     <span class="glyphicon glyphicon-trash pull-right" title="Delete Item"></span></i></a>
+
+                    <a href = "{{url_for('editItem', category_id = i.category.id, item_id = i.id)}}">
+                    <i class="fa fa-edit" style="font-size:25px;color:green">
+                    <span class="glyphicon glyphicon-pencil pull-right" title="Edit Item"></span></i></a>
+                  {% endif %}
+                  <div id="demo{{ i.id }}" class="collapse" style="position: absolute; z-index: 1;background: #f704EB;padding: 8px;box-shadow: 0px 0px 4px #7FFF00;">
+                    <p class="h4">Shoe Model : {{i.model}}</p>                   
+                    <p class="h4">Shoe Color : {{i.color}}</p>
+                    <p class="h4">Shoe Price : {{i.price}}</p>
+                    <p class="h4">Shoe Description : {{ i.description }}</p>
+                  </div>
+                </div>
+                 </div>        
+                </div>
+            {% endif %}
+          {% endfor %}
+          </div>          
+        </div>
+     </div><!-- /.row -->
+    </div> <!-- /.container -->
+   </section>  <!-- /.section -->
+   </div> <!-- /.container-fluid --> 
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+

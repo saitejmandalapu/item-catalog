@@ -1,0 +1,12 @@
+<div class="flash">
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="alert alert-success alert-dismissable animated fadeIn" style="margin-top: 65px">
+            {% for message in messages %}
+    	      <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a>
+ 	          <p class="h4"> <strong>{{ message }}</strong></p>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+</div>

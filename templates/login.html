@@ -1,0 +1,59 @@
+<!--login.html Page**-->
+
+<!--Include the following in <head>..</head> tag:-->
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://apis.google.com/js/client:platform.js?onload=start" async defer></script>
+<script>
+  function start() {
+    gapi.load('auth2', function() {
+      auth2 = gapi.auth2.init({
+        client_id: '640624652286-v0i9d743oplpdbqbqp0ogsqccjcjbs3u.apps.googleusercontent.com'
+      });
+    });
+  }
+</script>
+
+
+<!--In the <body> tag, add the below button and div-->
+<body bgcolor="#FF8C00" style="margin-top:60px;">
+<center ><h1> Login Here</h1>
+  <button id="signinButton" style="font: bold 20px Arial;">Google-Sign in<i class="fa fa-user"></i></button>
+<div id="result">
+</center>
+</div>
+
+<!--Add the below script before the ending </body> tag-->
+
+<script>
+  $('#signinButton').click(function() {
+    function signInCallback(authResult){
+      if (authResult['code']){
+        $('#signinButton').attr('style', 'display: none');
+        $.ajax({
+          type: 'POST',
+          url: '/gconnect?state={{STATE}}',
+          headers: {
+          'X-Requested-With': 'XMLHttpRequest'
+          },
+          contentType: 'application/octet-stream; charset=utf-8',
+          success:function(result){
+            $('#result').html('<h2>Login Successful!</h2></br>'+ result + '<p class="h3"></br>Redirecting...</p>')
+                 setTimeout(function() {
+                  window.location.href = "/category";
+                 }, 2000);
+          },
+          processData:false,
+          data:authResult['code']
+        });
+      } else{
+        // handle error
+        console.log('There was an error: ' + authResult['error']);
+        $('#result').html('Failed to make a server-side call. Check your configuration and console.');
+      }
+    }
+    auth2.grantOfflineAccess().then(signInCallback);
+  });
+</script>
+</body>
