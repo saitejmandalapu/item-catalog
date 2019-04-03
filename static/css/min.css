@@ -1,0 +1,107 @@
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+body{
+	background-color:#00FF00;
+	font-family:Helvetica,Arial, sans-serif;
+  font-size: 12px;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: .02em;
+  overflow-x: hidden;
+}
+
+img {
+  -webkit-backface-visibility: hidden;
+  height: auto;
+  max-width: 100%;
+}
+
+.text-white {
+  color: #FFF;
+}
+
+p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+ul,
+ol,
+dl {
+  list-style-position: outside;
+}
+
+/**
+*Heading
+*/
+h1,h2,h3,h4,h5,h6 {
+  margin: 0;
+  padding: 0;
+  color: yellow;
+}
+
+
+/**
+* Section
+*/
+.section {
+  padding-top: 80px;
+  padding-bottom: 70px;
+  position: relative;
+  width: 100%;
+}
+
+.section-content {
+  vertical-align: middle;
+  z-index: 10;
+}
+
+
+/**
+* Navigation
+*/
+
+.navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand{
+  margin-left: 0px;
+  font-size: 30px;
+}
+
+.navbar-nav>li>a {
+  font-size: 20px;
+
+.panel-title {
+  font-size: 18px;
+}
+
+img-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-glyphicon {
+    padding:8px;
+    background:#0000FF;
+    margin-right:4px;
+}
+.icon-btn {
+    padding: 1px 15px 3px 2px;
+    border-radius:50px;
+}
+
+.container-fluid {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.form-group {
+  font-size: 19px;
+}
+
+
+.mt-5 {
+  margin-top: 80px;
+}
